@@ -37,24 +37,25 @@ export default function Index() {
           <Navbar bg={null} variant={!userPrefersLight && 'dark'} expand="lg">
             <Container>
               <Navbar.Brand>Your Bot Is</Navbar.Brand>
-              {authenticationStatus === 'authenticated' && (
-                <>
-                  <Navbar.Toggle />
-                  <Navbar.Collapse>
-                    <Nav className="ml-lg-5 mr-auto">
-                      <Nav.Link
-                        href="https://github.com/Gulci/yourbot-client"
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        github
-                      </Nav.Link>
-                      <Nav.Link
-                        href="https://discord.gg/xAk4pV5zYX"
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        discord
-                      </Nav.Link>
-                    </Nav>
+
+              <>
+                <Navbar.Toggle />
+                <Navbar.Collapse>
+                  <Nav className="ml-lg-5 mr-auto">
+                    <Nav.Link
+                      href="https://github.com/Gulci/yourbot-client"
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      github
+                    </Nav.Link>
+                    <Nav.Link
+                      href="https://discord.gg/xAk4pV5zYX"
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      discord
+                    </Nav.Link>
+                  </Nav>
+                  {authenticationStatus === 'authenticated' && (
                     <NavDropdown
                       id="user-dropdown"
                       title={
@@ -73,9 +74,9 @@ export default function Index() {
                         Log Out
                       </NavDropdown.Item>
                     </NavDropdown>
-                  </Navbar.Collapse>
-                </>
-              )}
+                  )}
+                </Navbar.Collapse>
+              </>
             </Container>
           </Navbar>
         </header>
