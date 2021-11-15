@@ -43,16 +43,23 @@ export default NextAuth({
 
               if (!creationResponse.ok) {
                 const creationResponseText = await creationResponse.text()
-                throw new Error(
-                  `Error from API server when creating new user: ${creationResponse.status} ${creationResponse.statusText}: ${creationResponseText}`,
+                console.error(
+                  'Error from API server when creating new user',
+                  creationResponse.status,
+                  creationResponse.statusText,
+                  creationResponseText,
                 )
+                throw new Error('Error from API server when creating new user')
               }
               break
             }
             default: {
-              throw new Error(
-                `Error from API server: ${getResponse.status} ${getResponse.statusText}`,
+              console.error(
+                'Error from API server',
+                getResponse.status,
+                getResponse.statusText,
               )
+              throw new Error('Error from API server')
             }
           }
         }
