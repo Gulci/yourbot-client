@@ -37,13 +37,21 @@ export default function Index() {
           <Container>
             <IndexNav className="d-flex align-items-center">
               <span className="h4 mb-0">Your Bot Is</span>
-              <a
-                className="ml-5"
-                href="https://github.com/Gulci/yourbot-client"
-                target="_blank"
-                rel="noopener noreferrer">
-                github
-              </a>
+              <div className="ml-5">
+                <a
+                  href="https://github.com/Gulci/yourbot-client"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  github
+                </a>
+                <a
+                  className="ml-3"
+                  href="https://discord.gg/xAk4pV5zYX"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  discord
+                </a>
+              </div>
               {authenticationStatus === 'authenticated' && (
                 <div className="ml-auto">
                   <NavDropdown
