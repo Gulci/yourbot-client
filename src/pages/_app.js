@@ -2,7 +2,7 @@ import '../../theme/dist/bootstrap.min.css'
 import '../../theme/dist/yourbot-bootstrap.min.css'
 
 import AppLayout from '../common/components/layouts/AppLayout'
-import Auth from '../modules/auth/components/auth'
+import Auth from '../modules/auth/components/auth/Auth'
 import {SessionProvider} from 'next-auth/react'
 
 export default function YourBotApp({
