@@ -43,7 +43,7 @@ export default function Index() {
                 <Navbar.Collapse>
                   <Nav className="ml-lg-5 mr-auto">
                     <Nav.Link
-                      href="https://github.com/Gulci/yourbot-client"
+                      href="https://github.com/YourBotIs/yourbot-client"
                       target="_blank"
                       rel="noopener noreferrer">
                       github
