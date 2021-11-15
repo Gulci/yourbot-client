@@ -39,16 +39,17 @@ $grays-alt: (
 ) !default;
 // fusv-enable
 
-$blue-alt:    #375a7f !default;
-$indigo-alt:  #673ab7 !default;  //~~
-$purple-alt:  #654ea3 !default;  // Panatone CotY 2018
-$pink-alt:    #e83e8c !default;
-$red-alt:     #e74c3c !default;  //**
-$orange-alt:  #fd7e14 !default;
-$yellow-alt:  #f39c12 !default;  //**
-$green-alt:   #00bc8c !default;  //**
-$teal-alt:    #45b5aa !default;  // Panatone CotY 2010
-$cyan-alt:    #17a2b8 !default;
+$blue-alt:            #375a7f !default;
+$indigo-alt:          #673ab7 !default;  //~~
+$purple-alt:          #654ea3 !default;  // Panatone CotY 2018
+$pink-alt:            #e83e8c !default;
+$red-alt:             #e74c3c !default;  //**
+$orange-alt:          #fd7e14 !default;
+$yellow-alt:          #f39c12 !default;  //**
+$green-alt:           #00bc8c !default;  //**
+$teal-alt:            #45b5aa !default;  // Panatone CotY 2010
+$cyan-alt:            #17a2b8 !default;
+$discord-blurple-alt: #5865F2 !default;
 
 $colors-alt: (
   "blue":       $blue-alt,
@@ -75,6 +76,7 @@ $warning-alt:       $yellow-alt !default;
 $danger-alt:        $red-alt !default;
 $light-alt:         $gray-400-alt !default;
 $dark-alt:          $gray-800-alt !default;
+$discord-alt:       $discord-blurple-alt !default;
 
 $theme-colors-alt: (
   "primary":    $primary-alt,
@@ -84,7 +86,8 @@ $theme-colors-alt: (
   "warning":    $warning-alt,
   "danger":     $danger-alt,
   "light":      $light-alt,
-  "dark":       $dark-alt
+  "dark":       $dark-alt,
+  "discord":    $discord-alt
 ) !default;
 
 $theme-colors-rgb-alt: map-loop($theme-colors-alt, to-rgb, "$value") !default;
