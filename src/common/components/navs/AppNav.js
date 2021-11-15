@@ -33,7 +33,7 @@ export default function AppNav(props) {
                   <>
                     <AppNavProfileImage
                       alt={`${session.user.name}'s profile photo'`}
-                      className="mr-2"
+                      className="me-2"
                       src={session.user.image}
                       roundedCircle
                     />

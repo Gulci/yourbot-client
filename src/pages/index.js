@@ -41,7 +41,7 @@ export default function Index() {
               <>
                 <Navbar.Toggle />
                 <Navbar.Collapse>
-                  <Nav className="ml-lg-5 mr-auto">
+                  <Nav className="ml-lg-5 me-auto">
                     <Nav.Link
                       href="https://github.com/YourBotIs/yourbot-client"
                       target="_blank"
@@ -62,7 +62,7 @@ export default function Index() {
                         <>
                           <AppNavProfileImage
                             alt={`${session.user.name}'s profile photo'`}
-                            className="mr-2"
+                            className="me-2"
                             src={session.user.image}
                             roundedCircle
                           />
