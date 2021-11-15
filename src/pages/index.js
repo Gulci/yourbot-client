@@ -6,8 +6,11 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import FlavorText from '../modules/index/components/FlavorText'
 import Head from 'next/head'
+import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import Navbar from 'react-bootstrap/Navbar'
 import styled from 'styled-components'
+import {useMediaQuery} from '@react-hook/media-query'
 
 const FlavorTextContainer = styled.div`
   min-height: 16vh;
@@ -17,12 +20,9 @@ const FlavorTextContainer = styled.div`
   }
 `
 
-const IndexNav = styled.div`
-  min-height: 51px;s
-`
-
 export default function Index() {
   const {data: session, status: authenticationStatus} = useSession()
+  const userPrefersLight = useMediaQuery('(prefers-color-scheme: light)')
 
   return (
     <div className="min-vh-100 text-center">
@@ -34,48 +34,50 @@ export default function Index() {
 
       <div className="d-flex flex-column w-100 min-vh-100 p-3 mx-auto">
         <header className="mb-auto">
-          <Container>
-            <IndexNav className="d-flex align-items-center">
-              <span className="h4 mb-0">Your Bot Is</span>
-              <div className="ml-5">
-                <a
-                  href="https://github.com/Gulci/yourbot-client"
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  github
-                </a>
-                <a
-                  className="ml-3"
-                  href="https://discord.gg/xAk4pV5zYX"
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  discord
-                </a>
-              </div>
+          <Navbar bg={null} variant={!userPrefersLight && 'dark'} expand="lg">
+            <Container>
+              <Navbar.Brand>Your Bot Is</Navbar.Brand>
               {authenticationStatus === 'authenticated' && (
-                <div className="ml-auto">
-                  <NavDropdown
-                    id="user-dropdown"
-                    title={
-                      <>
-                        <AppNavProfileImage
-                          alt={`${session.user.name}'s profile photo'`}
-                          className="mr-2"
-                          src={session.user.image}
-                          roundedCircle
-                        />
-                        {session.user.name}
-                      </>
-                    }>
-                    <NavDropdown.Item
-                      onClick={() => signOut({callbackUrl: '/'})}>
-                      Log Out
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </div>
+                <>
+                  <Navbar.Toggle />
+                  <Navbar.Collapse>
+                    <Nav className="ml-lg-5 mr-auto">
+                      <Nav.Link
+                        href="https://github.com/Gulci/yourbot-client"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        github
+                      </Nav.Link>
+                      <Nav.Link
+                        href="https://discord.gg/xAk4pV5zYX"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        discord
+                      </Nav.Link>
+                    </Nav>
+                    <NavDropdown
+                      id="user-dropdown"
+                      title={
+                        <>
+                          <AppNavProfileImage
+                            alt={`${session.user.name}'s profile photo'`}
+                            className="mr-2"
+                            src={session.user.image}
+                            roundedCircle
+                          />
+                          {session.user.name}
+                        </>
+                      }>
+                      <NavDropdown.Item
+                        onClick={() => signOut({callbackUrl: '/'})}>
+                        Log Out
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </Navbar.Collapse>
+                </>
               )}
-            </IndexNav>
-          </Container>
+            </Container>
+          </Navbar>
         </header>
 
         <main>
