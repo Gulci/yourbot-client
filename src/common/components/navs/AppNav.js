@@ -5,7 +5,6 @@ import Image from 'react-bootstrap/Image'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Navbar from 'react-bootstrap/Navbar'
 import styled from 'styled-components'
-import {useMediaQuery} from '@react-hook/media-query'
 
 export const AppNavProfileImage = styled(Image)`
   max-width: 35px;
@@ -13,14 +12,9 @@ export const AppNavProfileImage = styled(Image)`
 
 export default function AppNav(props) {
   const {data: session, status: authenticationStatus} = useSession()
-  const userPrefersLight = useMediaQuery('(prefers-color-scheme: light)')
 
   return (
-    <Navbar
-      bg={!userPrefersLight ? 'dark' : 'light'}
-      variant={!userPrefersLight && 'dark'}
-      expand="lg"
-      {...props}>
+    <Navbar bg="dark" variant="dark" expand="lg" {...props}>
       <Container>
         <Navbar.Brand href="/">Your Bot Is</Navbar.Brand>
         {authenticationStatus === 'authenticated' && (

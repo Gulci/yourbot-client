@@ -10,7 +10,6 @@ import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Navbar from 'react-bootstrap/Navbar'
 import styled from 'styled-components'
-import {useMediaQuery} from '@react-hook/media-query'
 
 const FlavorTextContainer = styled.div`
   min-height: 16vh;
@@ -22,7 +21,6 @@ const FlavorTextContainer = styled.div`
 
 export default function Index() {
   const {data: session, status: authenticationStatus} = useSession()
-  const userPrefersLight = useMediaQuery('(prefers-color-scheme: light)')
 
   return (
     <div className="min-vh-100 text-center">
@@ -32,9 +30,9 @@ export default function Index() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="d-flex flex-column w-100 min-vh-100 p-3 mx-auto">
+      <div className="d-flex flex-column w-100 min-vh-100 mx-auto">
         <header className="mb-auto">
-          <Navbar bg={null} variant={!userPrefersLight && 'dark'} expand="lg">
+          <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
               <Navbar.Brand>Your Bot Is</Navbar.Brand>
 
