@@ -1,0 +1,11 @@
+// Color system
+// ---------------------------------------
+
+$discord-blurple: #5865F2;
+
+$theme-colors: map-merge(
+  (
+    "discord":    $discord-blurple,
+  ),
+  $theme-colors
+);

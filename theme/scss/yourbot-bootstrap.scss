@@ -15,6 +15,7 @@
 @import "../node_modules/bootstrap/scss/functions";
 @import "./dark/functions";
 @import "../node_modules/bootstrap/scss/variables";  // original _variables file
+@import "./variables";
 @import "./variables-alt";                           // only the dark colors mapped as `-alt`
 @import "./dark/variables-map-save";                 // **!** save all the original core colors
 @import "./dark/variables-map-back";                 // **!** map the `-alt`'s back to core colors
