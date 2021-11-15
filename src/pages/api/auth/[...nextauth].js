@@ -7,7 +7,7 @@ export default NextAuth({
       if (profile?.id) {
         // see if we need to create a user in the backend
         const getResponse = await fetch(
-          `${process.env.YOURBOT_API_BASE_URL}/users/${profile.id}3`,
+          `${process.env.YOURBOT_API_BASE_URL}/users/${profile.id}`,
           {
             headers: {
               accept: 'application/json',
@@ -26,9 +26,9 @@ export default NextAuth({
                   body: JSON.stringify({
                     discord_oauth: {
                       avatar: profile.avatar,
-                      discord_user_id: `${profile.id}3`,
+                      discord_user_id: profile.id,
                       discriminator: profile.discriminator,
-                      email: `3${profile.email}`,
+                      email: profile.email,
                       username: profile.username,
                     },
                   }),
