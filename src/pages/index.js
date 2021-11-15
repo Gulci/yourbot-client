@@ -99,7 +99,7 @@ export default function Index() {
           </Container>
         </main>
 
-        <footer className="mt-auto text-muted">
+        <footer className="mt-auto text-muted pb-3">
           client by{' '}
           <a
             href="https://github.com/gulci"
