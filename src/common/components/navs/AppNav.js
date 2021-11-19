@@ -3,6 +3,7 @@ import {signOut, useSession} from 'next-auth/react'
 import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
 import Link from 'next/link'
+import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Navbar from 'react-bootstrap/Navbar'
 import styled from 'styled-components'
@@ -22,25 +23,29 @@ export default function AppNav(props) {
         </Link>
         {authenticationStatus === 'authenticated' && (
           <>
-            <Navbar.Toggle />
-            <Navbar.Collapse className="justify-content-end">
-              <NavDropdown
-                id="user-dropdown"
-                title={
-                  <>
-                    <AppNavProfileImage
-                      alt={`${session.user.name}'s profile photo'`}
-                      className="me-2"
-                      src={session.user.image}
-                      roundedCircle
-                    />
-                    {session.user.name}
-                  </>
-                }>
-                <NavDropdown.Item onClick={() => signOut({callbackUrl: '/'})}>
-                  Log Out
-                </NavDropdown.Item>
-              </NavDropdown>
+            <Navbar.Toggle aria-controls="user-profile-nav" />
+            <Navbar.Collapse
+              className="justify-content-end"
+              id="user-profile-nav">
+              <Nav>
+                <NavDropdown
+                  id="user-dropdown"
+                  title={
+                    <>
+                      <AppNavProfileImage
+                        alt={`${session.user.name}'s profile photo'`}
+                        className="me-2"
+                        src={session.user.image}
+                        roundedCircle
+                      />
+                      {session.user.name}
+                    </>
+                  }>
+                  <NavDropdown.Item onClick={() => signOut({callbackUrl: '/'})}>
+                    Log Out
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
             </Navbar.Collapse>
           </>
         )}
