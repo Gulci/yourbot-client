@@ -2,6 +2,7 @@ import {signOut, useSession} from 'next-auth/react'
 
 import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
+import Link from 'next/link'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Navbar from 'react-bootstrap/Navbar'
 import styled from 'styled-components'
@@ -16,7 +17,9 @@ export default function AppNav(props) {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" {...props}>
       <Container>
-        <Navbar.Brand href="/">Your Bot Is</Navbar.Brand>
+        <Link href="/" passHref>
+          <Navbar.Brand href="/">Your Bot Is</Navbar.Brand>
+        </Link>
         {authenticationStatus === 'authenticated' && (
           <>
             <Navbar.Toggle />

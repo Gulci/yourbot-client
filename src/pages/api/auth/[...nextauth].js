@@ -63,8 +63,15 @@ export default NextAuth({
             }
           }
         }
+
+        // add discord user id to token
+        token.discord_user_id = profile.id
       }
       return token
+    },
+    async session({session, token, user}) {
+      session.user.discord_user_id = token.discord_user_id
+      return session
     },
   },
   pages: {

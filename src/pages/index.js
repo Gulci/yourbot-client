@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import FlavorText from '../modules/index/components/FlavorText/FlavorText'
 import Head from 'next/head'
+import Link from 'next/link'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Navbar from 'react-bootstrap/Navbar'
@@ -85,17 +86,20 @@ export default function Index() {
               <h1>your bot is [{<FlavorText />}]</h1>
             </FlavorTextContainer>
 
-            {authenticationStatus !== 'authenticated' && (
+            <Link href="/bots" passHref>
               <Button
                 className="mt-3"
-                onClick={() => {
-                  signIn('discord')
-                }}
                 size="lg"
-                variant="discord">
-                Log in with Discord
+                variant={
+                  authenticationStatus !== 'authenticated'
+                    ? 'discord'
+                    : 'primary'
+                }>
+                {authenticationStatus !== 'authenticated'
+                  ? 'Log in with Discord'
+                  : 'Go to dashboard'}
               </Button>
-            )}
+            </Link>
           </Container>
         </main>
 
