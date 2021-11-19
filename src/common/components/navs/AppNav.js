@@ -27,7 +27,7 @@ export default function AppNav(props) {
             <Navbar.Collapse
               className="justify-content-end"
               id="user-profile-nav">
-              <Nav>
+              <Nav className="align-items-center">
                 <NavDropdown
                   id="user-dropdown"
                   title={

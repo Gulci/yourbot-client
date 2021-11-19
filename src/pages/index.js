@@ -36,26 +36,30 @@ export default function Index() {
           <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
               <Navbar.Brand>Your Bot Is</Navbar.Brand>
-
-              <>
-                <Navbar.Toggle />
-                <Navbar.Collapse>
-                  <Nav className="ml-lg-5 me-auto">
+              <Navbar.Toggle aria-controls="landing-nav" />
+              <Navbar.Collapse id="landing-nav">
+                <Nav className="align-items-center">
+                  <Nav.Item>
                     <Nav.Link
                       href="https://github.com/YourBotIs/yourbot-client"
                       target="_blank"
                       rel="noopener noreferrer">
                       github
                     </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
                     <Nav.Link
                       href="https://discord.gg/xAk4pV5zYX"
                       target="_blank"
                       rel="noopener noreferrer">
                       discord
                     </Nav.Link>
-                  </Nav>
-                  {authenticationStatus === 'authenticated' && (
+                  </Nav.Item>
+                </Nav>
+                {authenticationStatus === 'authenticated' && (
+                  <Nav className="align-items-center ms-lg-auto">
                     <NavDropdown
+                      className="ms-lg-auto"
                       id="user-dropdown"
                       title={
                         <>
@@ -73,9 +77,9 @@ export default function Index() {
                         Log Out
                       </NavDropdown.Item>
                     </NavDropdown>
-                  )}
-                </Navbar.Collapse>
-              </>
+                  </Nav>
+                )}
+              </Navbar.Collapse>
             </Container>
           </Navbar>
         </header>
