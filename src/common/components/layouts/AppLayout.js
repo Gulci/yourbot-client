@@ -1,12 +1,14 @@
+import AppFooter from '../AppFooter'
 import AppMeta from '../metas/AppMeta'
 import AppNav from '../navs/AppNav'
 
-const AppLayout = ({children, hideNav = false}) => (
+const AppLayout = ({children, hideFooter = false, hideNav = false}) => (
   <>
     <AppMeta />
 
     {!hideNav && <AppNav />}
     <main className="min-vh-100">{children}</main>
+    {!hideFooter && <AppFooter />}
   </>
 )
 

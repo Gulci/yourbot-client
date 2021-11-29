@@ -41,7 +41,7 @@ export default function Index() {
                 <Nav className="align-items-center">
                   <Nav.Item>
                     <Nav.Link
-                      href="https://github.com/YourBotIs/yourbot-client"
+                      href="https://github.com/YourBotIs"
                       target="_blank"
                       rel="noopener noreferrer">
                       github
@@ -108,13 +108,12 @@ export default function Index() {
         </main>
 
         <footer className="mt-auto text-muted pb-3">
-          client by{' '}
-          <a
-            href="https://github.com/gulci"
-            target="_blank"
-            rel="noopener noreferrer">
-            gulci
-          </a>
+          <Link href="/privacy">
+            <a className="me-3">privacy</a>
+          </Link>
+          <Link href="/tos">
+            <a>terms of service</a>
+          </Link>
         </footer>
       </div>
     </div>
