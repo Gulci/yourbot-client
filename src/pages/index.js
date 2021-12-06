@@ -120,4 +120,8 @@ export default function Index() {
   )
 }
 
-Index.getLayout = (page) => <AppLayout hideNav={true}>{page}</AppLayout>
+Index.getLayout = (page) => (
+  <AppLayout hideNav={true} hideFooter={true}>
+    {page}
+  </AppLayout>
+)
