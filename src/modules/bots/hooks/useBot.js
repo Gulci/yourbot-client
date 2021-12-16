@@ -2,7 +2,10 @@ import {jsonFetcher} from '../../../common/utils/fetchers'
 import useSWR from 'swr'
 
 export default function useBot(botId) {
-  const {data, error} = useSWR(`/api/dashboard/bots/${botId}`, jsonFetcher)
+  const {data, error} = useSWR(
+    botId ? `/api/dashboard/bots/${botId}` : null,
+    jsonFetcher,
+  )
 
   return {
     bot: data,

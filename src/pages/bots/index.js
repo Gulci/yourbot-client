@@ -26,10 +26,11 @@ export default function Bots() {
                 <Card>
                   <Card.Body>
                     <Card.Title className="d-flex align-items-center">
-                      <BotStatusIcon
+                      {/* TODO: Implement status */}
+                      {/* <BotStatusIcon
                         className="me-2"
                         status={bot.deploy_status}
-                      />
+                      /> */}
                       {bot.name}
                     </Card.Title>
                     <Link href={`bots/${bot.id}`} passHref>

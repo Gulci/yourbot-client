@@ -1,0 +1,92 @@
+import {EnvVariableSchema} from '../../../../../../modules/bots/schemas'
+import {getSession} from 'next-auth/react'
+
+export default async function bot(req, res) {
+  const session = await getSession({req})
+  const apiEndpoint = `${process.env.YOURBOT_API_BASE_URL}/bots/${req.query.botId}/environment_variables/${req.query.environment_variable}/`
+  const apiHeaders = {
+    accept: 'application/json',
+    Authorization: process.env.YOURBOT_API_TOKEN,
+  }
+
+  if (session) {
+    if (req.query.botId && req.query.environment_variable) {
+      switch (req.method) {
+        case 'DELETE': {
+          const response = await fetch(apiEndpoint, {
+            headers: apiHeaders,
+            method: 'DELETE',
+          })
+
+          if (response.ok) res.status(204)
+          else {
+            console.error(
+              'Error from API server',
+              response.status,
+              response.statusText,
+            )
+            res.status(500)
+          }
+
+          break
+        }
+
+        case 'GET': {
+          const response = await fetch(apiEndpoint, {
+            headers: apiHeaders,
+          })
+
+          if (response.ok) res.status(200).json((await response.json()).data)
+          else {
+            if (response.status === 404) res.status(404)
+            else {
+              console.error(
+                'Error from API server',
+                response.status,
+                response.statusText,
+              )
+              res.status(500)
+            }
+          }
+
+          break
+        }
+
+        case 'PATCH': {
+          if (EnvVariableSchema.isValidSync(req.body)) {
+            const response = await fetch(apiEndpoint, {
+              body: JSON.stringify({
+                environment_variable: JSON.parse(req.body),
+              }),
+              headers: {...apiHeaders, 'content-type': 'application/json'},
+              method: 'PATCH',
+            })
+
+            if (response.ok) res.status(200).json((await response.json()).data)
+            else {
+              console.error(
+                'Error from API server',
+                response.status,
+                response.statusText,
+              )
+              res.status(500)
+            }
+          } else {
+            res.status(401)
+          }
+
+          break
+        }
+        default: {
+          res.status(401)
+          break
+        }
+      }
+    } else {
+      res.status(400)
+    }
+  } else {
+    res.status(401)
+  }
+  res.end()
+}
