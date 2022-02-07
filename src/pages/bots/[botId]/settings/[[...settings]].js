@@ -33,7 +33,9 @@ export default function Settings() {
 
   return bot ? (
     <>
-      <DisplayTitle title="Bot Settings" />
+      <DisplayTitle>
+        <h1>Bot Settings</h1>
+      </DisplayTitle>
       <section className="py-4">
         <SettingsApp>
           <SettingsComponent />

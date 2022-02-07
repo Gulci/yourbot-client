@@ -1,10 +1,10 @@
 import Container from 'react-bootstrap/Container'
 
-export default function DisplayTitle({title}) {
+export default function DisplayTitle({children}) {
   return (
     <section className="border-top border-bottom py-5">
-      <Container>
-        <h1>{title}</h1>
+      <Container className="d-flex align-items-center">
+        {children}
       </Container>
     </section>
   )

@@ -5,6 +5,10 @@ export const DEFAULT_ENVIRONMENT_VARIABLES = [
   'DISCORD_TOKEN',
 ]
 
+export const DISCORD_URL_COMPONENTS = {
+  DISCORD_API_ENDPOINT: 'https://discord.com/api',
+}
+
 export const SETTINGS_PAGES = {
   DISCORD: 'discord',
   ENV_VARIABLES: 'environment-variables',
