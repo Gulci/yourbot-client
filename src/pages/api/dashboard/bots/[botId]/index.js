@@ -44,7 +44,7 @@ export default async function bot(req, res) {
             })
 
             if (response.ok)
-              res.status(200).json(JSONbig.parse(await response.json()).data)
+              res.status(200).json(JSONbig.parse(await response.text()).data)
             else {
               console.error(
                 'Error from API server',
