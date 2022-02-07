@@ -1,5 +1,6 @@
 import {BotSettingsSchema} from '../../../../../modules/bots/schemas'
 import {getSession} from 'next-auth/react'
+import JSONbig from 'json-bigint'
 
 export default async function bot(req, res) {
   const session = await getSession({req})
@@ -17,7 +18,8 @@ export default async function bot(req, res) {
             headers: apiHeaders,
           })
 
-          if (response.ok) res.status(200).json((await response.json()).data)
+          if (response.ok)
+            res.status(200).json(JSONbig.parse(await response.text()).data)
           else {
             if (response.status === 404) res.status(404)
             else {
@@ -41,7 +43,8 @@ export default async function bot(req, res) {
               method: 'PATCH',
             })
 
-            if (response.ok) res.status(200).json((await response.json()).data)
+            if (response.ok)
+              res.status(200).json(JSONbig.parse(await response.json()).data)
             else {
               console.error(
                 'Error from API server',
