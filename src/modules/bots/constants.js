@@ -7,6 +7,7 @@ export const DEFAULT_ENVIRONMENT_VARIABLES = [
 
 export const DISCORD_URL_COMPONENTS = {
   DISCORD_API_ENDPOINT: 'https://discord.com/api',
+  DISCORD_DEV_PORTAL_URL: 'https://discord.com/developers/applications',
 }
 
 export const SETTINGS_PAGES = {

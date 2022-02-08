@@ -1,12 +1,13 @@
-import DiscordSettings from '../../../../modules/bots/components/settings/DiscordSettings'
+import { useRouter } from 'next/router'
 import DisplayTitle from '../../../../common/components/DisplayTitle'
+import BotDiscordSettingsButton from '../../../../modules/bots/components/BotDiscordSettingsButton'
+import { getLayout } from '../../../../modules/bots/components/layouts/BotsLayout'
+import DiscordSettings from '../../../../modules/bots/components/settings/DiscordSettings'
 import EnvVariableSettings from '../../../../modules/bots/components/settings/EnvVariablesSettings'
 import GeneralSettings from '../../../../modules/bots/components/settings/GeneralSettings'
-import {SETTINGS_PAGES} from '../../../../modules/bots/constants'
 import SettingsApp from '../../../../modules/bots/components/settings/SettingsApp'
-import {getLayout} from '../../../../modules/bots/components/layouts/BotsLayout'
+import { SETTINGS_PAGES } from '../../../../modules/bots/constants'
 import useBot from '../../../../modules/bots/hooks/useBot'
-import {useRouter} from 'next/router'
 
 export default function Settings() {
   const router = useRouter()
@@ -35,6 +36,9 @@ export default function Settings() {
     <>
       <DisplayTitle>
         <h1>Bot Settings</h1>
+        <div className="ms-auto">
+          <BotDiscordSettingsButton clientId={bot.application_id} />
+        </div>
       </DisplayTitle>
       <section className="py-4">
         <SettingsApp>
