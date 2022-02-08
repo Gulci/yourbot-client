@@ -17,10 +17,13 @@ export default function Bot() {
 
   const {bot, isLoading, isBotErrored} = useBot(botId)
   const {files, isLoadingFiles, isFilesErrored} = useFiles(botId)
-  const keyedFiles = Object.assign(
-    {},
-    ...files.map(({uuid, ...rest}) => ({[uuid]: {...rest}})),
-  )
+  const keyedFiles =
+    (files &&
+      Object.assign(
+        {},
+        ...files.map(({uuid, ...rest}) => ({[uuid]: {...rest}})),
+      )) ||
+    {}
 
   let currentFile = null
   if (files) {
