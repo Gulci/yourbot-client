@@ -45,6 +45,15 @@ export default function BotsNav() {
                   </Nav.Link>
                 </Link>
               </Nav.Item>
+              <Nav.Item className="me-3">
+                <Link href={`/bots/${bot.id}/code`} passHref>
+                  <Nav.Link
+                    active={router.pathname === `/bots/[botId]/code`}
+                    className="ps-0 pe-2">
+                    Source Code
+                  </Nav.Link>
+                </Link>
+              </Nav.Item>
               <Nav.Item>
                 <Link href={`/bots/${bot.id}/settings`} passHref>
                   <Nav.Link
