@@ -2,7 +2,7 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import Nav from 'react-bootstrap/Nav'
 import useFiles from '../../../hooks/useFiles'
-import Button from 'react-bootstrap/Button'
+import AddFile from '../ui/AddFile'
 
 export default function CodeFileNav() {
   const router = useRouter()
@@ -28,6 +28,7 @@ export default function CodeFileNav() {
           ))}
         </Nav>
       )}
+      <AddFile />
     </>
   )
 }

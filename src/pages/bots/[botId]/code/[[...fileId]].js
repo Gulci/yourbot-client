@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
+import DisplayTitle from '../../../../common/components/DisplayTitle'
 import CodeApp from '../../../../modules/bots/components/code/CodeApp'
 import {getLayout} from '../../../../modules/bots/components/layouts/BotsLayout'
 import useBot from '../../../../modules/bots/hooks/useBot'
@@ -16,19 +17,22 @@ export default function Bot() {
 
   const {bot, isLoading, isBotErrored} = useBot(botId)
   const {files, isLoadingFiles, isFilesErrored} = useFiles(botId)
+  const keyedFiles = Object.assign(
+    {},
+    ...files.map(({uuid, ...rest}) => ({[uuid]: {...rest}})),
+  )
 
   let currentFile = null
   if (files) {
-    if (fileId && fileId in files) currentFile = files[fileId]
+    if (fileId && fileId[0] in keyedFiles) currentFile = keyedFiles[fileId[0]]
     else if (files.length > 0) {
       currentFile = files[0]
     }
   }
 
-  console.log(fileId, files)
-
   return bot ? (
     <>
+      <DisplayTitle title={currentFile && currentFile.name} />
       <section className="py-4">
         {currentFile && (
           <CodeApp>

@@ -5,6 +5,8 @@ export const DEFAULT_ENVIRONMENT_VARIABLES = [
   'DISCORD_TOKEN',
 ]
 
+export const DEFAULT_FILE_CONTENT = '#!/bin/env python3\n'
+
 export const SETTINGS_PAGES = {
   DISCORD: 'discord',
   ENV_VARIABLES: 'environment-variables',
