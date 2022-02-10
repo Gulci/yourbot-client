@@ -13,15 +13,17 @@ export default function DeleteFileButton({file}) {
 
   function deleteFile() {
     mutate(`/api/dashboard/bots/${botId}/files`, async (files) => {
-      await fetch(`/api/dashboard/bots/${botId}/files/${file.uuid}`, {
+      await fetch(`/api/dashboard/bots/${botId}/files/${file.id}`, {
         method: 'DELETE',
       })
 
       const filteredFiles = files.filter(
-        (fileToFilter) => fileToFilter.uuid !== file.uuid,
+        (fileToFilter) => fileToFilter.id !== file.id,
       )
       return filteredFiles
     })
+
+    setIsDeletionConfirmationModalOpen(false)
   }
 
   return (

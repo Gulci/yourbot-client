@@ -20,7 +20,7 @@ export default function Bot() {
   const {files, isLoadingFiles, isFilesErrored} = useFiles(botId)
   const keyedFiles =
     (files &&
-      Object.assign({}, ...files.map((file) => ({[file.uuid]: file})))) ||
+      Object.assign({}, ...files.map((file) => ({[file.id]: file})))) ||
     {}
 
   let currentFile = null

@@ -16,11 +16,11 @@ export default function CodeFileNav() {
         <Nav className="flex-column">
           {files.map((file) => (
             <Link
-              href={`/bots/${botId}/code/${file.uuid}`}
-              key={file.uuid}
+              href={`/bots/${botId}/code/${file.id}`}
+              key={file.id}
               passHref>
               <Nav.Link
-                active={fileId && file.uuid === fileId[0]}
+                active={fileId && file.id === fileId[0]}
                 className="ps-0">
                 {file.name}
               </Nav.Link>
