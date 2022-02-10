@@ -1,3 +1,4 @@
+import {EnvVariableSchema} from '../../../../../../modules/bots/schemas'
 import {getSession} from 'next-auth/react'
 
 export default async function bot(req, res) {
@@ -32,22 +33,26 @@ export default async function bot(req, res) {
           break
         }
         case 'POST': {
-          const response = await fetch(apiEndpoint, {
-            body: JSON.stringify({
-              environment_variable: JSON.parse(req.body),
-            }),
-            headers: {...apiHeaders, 'content-type': 'application/json'},
-            method: 'POST',
-          })
+          if (EnvVariableSchema.isValidSync(req.body)) {
+            const response = await fetch(apiEndpoint, {
+              body: JSON.stringify({
+                environment_variable: JSON.parse(req.body),
+              }),
+              headers: {...apiHeaders, 'content-type': 'application/json'},
+              method: 'POST',
+            })
 
-          if (response.ok) res.status(200).json((await response.json()).data)
-          else {
-            console.error(
-              'Error from API server',
-              response.status,
-              response.statusText,
-            )
-            res.status(500)
+            if (response.ok) res.status(200).json((await response.json()).data)
+            else {
+              console.error(
+                'Error from API server',
+                response.status,
+                response.statusText,
+              )
+              res.status(500)
+            }
+          } else {
+            res.status(401)
           }
           break
         }
