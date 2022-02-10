@@ -7,7 +7,7 @@ import useBot from '../../../../modules/bots/hooks/useBot'
 import useFiles from '../../../../modules/bots/hooks/useFiles'
 
 const CodeEditor = dynamic(
-  () => import('../../../../modules/bots/components/CodeEditor'),
+  () => import('../../../../modules/bots/components/code/CodeEditor'),
   {ssr: false},
 )
 
