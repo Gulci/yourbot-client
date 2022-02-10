@@ -1,12 +1,12 @@
-import { useRouter } from 'next/router'
+import {useRouter} from 'next/router'
 import DisplayTitle from '../../../../common/components/DisplayTitle'
 import BotDiscordSettingsButton from '../../../../modules/bots/components/BotDiscordSettingsButton'
-import { getLayout } from '../../../../modules/bots/components/layouts/BotsLayout'
+import {getLayout} from '../../../../modules/bots/components/layouts/BotsLayout'
 import DiscordSettings from '../../../../modules/bots/components/settings/DiscordSettings'
 import EnvVariableSettings from '../../../../modules/bots/components/settings/EnvVariablesSettings'
 import GeneralSettings from '../../../../modules/bots/components/settings/GeneralSettings'
 import SettingsApp from '../../../../modules/bots/components/settings/SettingsApp'
-import { SETTINGS_PAGES } from '../../../../modules/bots/constants'
+import {SETTINGS_PAGES} from '../../../../modules/bots/constants'
 import useBot from '../../../../modules/bots/hooks/useBot'
 
 export default function Settings() {

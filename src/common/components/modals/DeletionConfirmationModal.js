@@ -10,7 +10,7 @@ export default function DeletionConfirmationModal({
   ...props
 }) {
   return (
-    <Modal aria-labelledby={id} centered size="lg" {...props}>
+    <Modal aria-labelledby={id} centered onHide={onCancel} size="lg" {...props}>
       <Modal.Header closeButton>
         <Modal.Title id={id}>{confirmationTitle}</Modal.Title>
       </Modal.Header>

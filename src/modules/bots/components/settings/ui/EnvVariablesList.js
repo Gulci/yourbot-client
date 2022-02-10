@@ -1,17 +1,16 @@
 import {Field, Formik} from 'formik'
+import {useRouter} from 'next/router'
 import {forwardRef, useState} from 'react'
-
+import {ThreeDotsVertical} from 'react-bootstrap-icons'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Dropdown from 'react-bootstrap/Dropdown'
-import {EnvVariableSchema} from '../../../schemas'
 import Form from 'react-bootstrap/Form'
 import ListGroup from 'react-bootstrap/ListGroup'
-import Modal from 'react-bootstrap/Modal'
 import Row from 'react-bootstrap/Row'
-import {ThreeDotsVertical} from 'react-bootstrap-icons'
-import {useRouter} from 'next/router'
 import {useSWRConfig} from 'swr'
+import DeletionConfirmationModal from '../../../../../common/components/modals/DeletionConfirmationModal'
+import {EnvVariableSchema} from '../../../schemas'
 
 const EnvVariableMenuToggle = forwardRef(({onClick}, ref) => (
   <a
@@ -195,44 +194,26 @@ export default function EnvVariablesList({envVars}) {
               )}
             </Formik>
           )}
-          <Modal
-            aria-labelledby="environment-variable-deletion-modal"
-            centered
-            key={`modal-${index}`}
-            onHide={() => {
+          <DeletionConfirmationModal
+            confirmationBody={
+              <>
+                <p>
+                  The following environment variable will be permanently
+                  deleted. Are you sure you want to continue?
+                </p>
+                <code>{envVar.key}</code>
+              </>
+            }
+            confirmationTitle="Delete Environment Variable"
+            id="environment-variable-deletion-modal"
+            onCancel={() => {
               setDeletingEnvVar(null)
             }}
-            size="lg"
-            show={deletingEnvVar}>
-            <Modal.Header closeButton>
-              <Modal.Title id="environment-variable-deletion-modal">
-                Delete Environment Variable
-              </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <p>
-                The following environment variable will be permanently deleted.
-                Are you sure you want to continue?
-              </p>
-              <code>{envVar.key}</code>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button
-                onClick={() => {
-                  setDeletingEnvVar(null)
-                }}
-                variant="secondary">
-                Cancel
-              </Button>
-              <Button
-                onClick={() => {
-                  deleteEnvVar(envVar.id)
-                }}
-                variant="danger">
-                Delete
-              </Button>
-            </Modal.Footer>
-          </Modal>
+            onConfirm={() => {
+              deleteEnvVar(envVar.id)
+            }}
+            show={deletingEnvVar}
+          />
         </ListGroup.Item>
       ))}
     </ListGroup>
