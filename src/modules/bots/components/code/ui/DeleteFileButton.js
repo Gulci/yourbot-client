@@ -23,7 +23,7 @@ export default function DeleteFileButton({file}) {
       return filteredFiles
     })
   }
-  console.log(file)
+
   return (
     file && (
       <>
