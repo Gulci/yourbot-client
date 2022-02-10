@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import DisplayTitle from '../../../../common/components/DisplayTitle'
 import CodeApp from '../../../../modules/bots/components/code/CodeApp'
+import DeleteFileButton from '../../../../modules/bots/components/code/ui/DeleteFileButton'
 import {getLayout} from '../../../../modules/bots/components/layouts/BotsLayout'
 import useBot from '../../../../modules/bots/hooks/useBot'
 import useFiles from '../../../../modules/bots/hooks/useFiles'
@@ -19,10 +20,7 @@ export default function Bot() {
   const {files, isLoadingFiles, isFilesErrored} = useFiles(botId)
   const keyedFiles =
     (files &&
-      Object.assign(
-        {},
-        ...files.map(({uuid, ...rest}) => ({[uuid]: {...rest}})),
-      )) ||
+      Object.assign({}, ...files.map((file) => ({[file.uuid]: file})))) ||
     {}
 
   let currentFile = null
@@ -35,7 +33,12 @@ export default function Bot() {
 
   return bot ? (
     <>
-      <DisplayTitle title={currentFile && currentFile.name} />
+      <DisplayTitle>
+        <h1>{currentFile && currentFile.name}</h1>
+        <div className="ms-auto">
+          <DeleteFileButton file={currentFile} />
+        </div>
+      </DisplayTitle>
       <section className="py-4">
         {currentFile && (
           <CodeApp>

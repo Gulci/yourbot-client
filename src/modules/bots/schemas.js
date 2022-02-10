@@ -22,6 +22,11 @@ export const EnvVariableSchema = object().shape({
   value: string().required(),
 })
 
+export const FileSchema = object().shape({
+  content: string().required(),
+  name: string().required(),
+})
+
 export const NewFileSchema = object().shape({
   name: string().required(),
 })
