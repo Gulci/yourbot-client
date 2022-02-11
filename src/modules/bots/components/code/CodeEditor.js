@@ -6,6 +6,7 @@ const CodeEditor = dynamic(
     require('ace-builds/src-noconflict/mode-python')
     require('ace-builds/src-noconflict/theme-twilight')
     require('ace-builds/src-noconflict/ext-language_tools')
+    require('ace-builds/src-noconflict/snippets/python')
     return ace
   },
   {

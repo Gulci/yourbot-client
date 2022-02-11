@@ -68,11 +68,11 @@ export default function Bot() {
                 ? currentFile.content
                 : 'Create a file to start editing.'
             }
-            // setOptions={{
-            //   enableBasicAutocompletion: true,
-            //   enableLiveAutocompletion: true,
-            //   enableSnippets: true,
-            // }}
+            setOptions={{
+              enableBasicAutocompletion: true,
+              enableLiveAutocompletion: true,
+              enableSnippets: true,
+            }}
           />
         </CodeApp>
       </section>
