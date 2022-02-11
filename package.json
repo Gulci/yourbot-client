@@ -5,7 +5,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --config ./.prettierrc --config-precedence prefer-file --ignore-path ./.gitignore --write \"./src/**/*.{js,jsx,json}\""
   },
   "dependencies": {
     "ace-builds": "^1.4.13",
