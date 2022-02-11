@@ -36,7 +36,7 @@ export default function AddFile() {
 
             return [...files, newFile]
           })
-          
+
           actions.resetForm()
           actions.validateForm()
           setIsAddingFile(false)

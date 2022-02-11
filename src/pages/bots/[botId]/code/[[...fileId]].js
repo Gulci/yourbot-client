@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router'
-import { useEffect, useMemo } from 'react'
+import {useRouter} from 'next/router'
+import {useEffect, useMemo} from 'react'
 import DisplayTitle from '../../../../common/components/DisplayTitle'
 import CodeApp from '../../../../modules/bots/components/code/CodeApp'
 import DeleteFileButton from '../../../../modules/bots/components/code/ui/DeleteFileButton'
-import { getLayout } from '../../../../modules/bots/components/layouts/BotsLayout'
+import {getLayout} from '../../../../modules/bots/components/layouts/BotsLayout'
 import useBot from '../../../../modules/bots/hooks/useBot'
 import useFiles from '../../../../modules/bots/hooks/useFiles'
 
