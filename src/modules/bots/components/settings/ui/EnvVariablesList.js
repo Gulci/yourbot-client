@@ -121,13 +121,14 @@ export default function EnvVariablesList({envVars}) {
                     ).json()
 
                     const filteredEnvVars = envVars.filter(
-                      (envVar) => envVar.id !== envVar.id,
+                      (envVar) => updatedEnvVar.id !== envVar.id,
                     )
                     return [...filteredEnvVars, updatedEnvVar]
                   },
                 )
 
                 setSuccessId(envVar.id)
+                setEditingEnvVar(false)
               }}>
               {({errors, handleChange, handleSubmit, isValid}) => (
                 <Form
