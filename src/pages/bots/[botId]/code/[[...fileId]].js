@@ -19,8 +19,7 @@ export default function Bot() {
   const {bot, isLoading, isBotErrored} = useBot(botId)
   const {files, isLoadingFiles, isFilesErrored} = useFiles(botId)
   const keyedFiles =
-    (files &&
-      Object.assign({}, ...files.map((file) => ({[file.id]: file})))) ||
+    (files && Object.assign({}, ...files.map((file) => ({[file.id]: file})))) ||
     {}
 
   let currentFile = null
@@ -34,27 +33,36 @@ export default function Bot() {
   return bot ? (
     <>
       <DisplayTitle>
-        <h1>{currentFile && currentFile.name}</h1>
-        <div className="ms-auto">
-          <DeleteFileButton file={currentFile} />
-        </div>
+        {currentFile ? (
+          <>
+            <h1>{currentFile && currentFile.name}</h1>
+            <div className="ms-auto">
+              <DeleteFileButton file={currentFile} />
+            </div>
+          </>
+        ) : (
+          !isLoading && <h1>No files :(</h1>
+        )}
       </DisplayTitle>
       <section className="py-4">
-        {currentFile && (
-          <CodeApp>
-            <CodeEditor
-              className="w-100"
-              mode="python"
-              theme="twilight"
-              value={currentFile.content}
-              // setOptions={{
-              //   enableBasicAutocompletion: true,
-              //   enableLiveAutocompletion: true,
-              //   enableSnippets: true,
-              // }}
-            />
-          </CodeApp>
-        )}
+        <CodeApp>
+          <CodeEditor
+            className="w-100"
+            mode="python"
+            readOnly={!currentFile}
+            theme="twilight"
+            value={
+              currentFile
+                ? currentFile.content
+                : 'Create a file to start editing.'
+            }
+            // setOptions={{
+            //   enableBasicAutocompletion: true,
+            //   enableLiveAutocompletion: true,
+            //   enableSnippets: true,
+            // }}
+          />
+        </CodeApp>
       </section>
     </>
   ) : null
