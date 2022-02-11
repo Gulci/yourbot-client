@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
+import {useEffect, useMemo} from 'react'
 import DisplayTitle from '../../../../common/components/DisplayTitle'
 import CodeApp from '../../../../modules/bots/components/code/CodeApp'
 import DeleteFileButton from '../../../../modules/bots/components/code/ui/DeleteFileButton'
@@ -18,9 +19,13 @@ export default function Bot() {
 
   const {bot, isLoading, isBotErrored} = useBot(botId)
   const {files, isLoadingFiles, isFilesErrored} = useFiles(botId)
-  const keyedFiles =
-    (files && Object.assign({}, ...files.map((file) => ({[file.id]: file})))) ||
-    {}
+  const keyedFiles = useMemo(
+    () =>
+      (files &&
+        Object.assign({}, ...files.map((file) => ({[file.id]: file})))) ||
+      {},
+    [files],
+  )
 
   let currentFile = null
   if (files) {
@@ -29,6 +34,13 @@ export default function Bot() {
       currentFile = files[0]
     }
   }
+
+  // Redirect to root if file doesn't exist
+  useEffect(() => {
+    if (fileId && !(fileId[0] in keyedFiles)) {
+      router.replace(`/bots/${botId}/code`)
+    }
+  }, [botId, fileId, keyedFiles, router])
 
   return bot ? (
     <>
