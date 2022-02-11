@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic'
-import { useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import CodeFileNav from './navs/CodeFileNav'
-
+import SaveFileButton from './ui/SaveFileButton'
 
 const CodeEditor = dynamic(
   () => import('../../../../modules/bots/components/code/CodeEditor'),
@@ -29,19 +29,25 @@ export default function CodeApp({file, loading}) {
         </Col>
         <Col lg="10">
           <CodeEditor
-              className="w-100"
-              mode="python"
-              readOnly={!file}
-              setOptions={{
-                enableBasicAutocompletion: true,
-                enableLiveAutocompletion: true,
-                enableSnippets: true,
-              }}
-              theme="twilight"
-              value={
-                editorValue
-              }
+            className="w-100"
+            mode="python"
+            onChange={setEditorValue}
+            readOnly={!file}
+            setOptions={{
+              enableBasicAutocompletion: true,
+              enableLiveAutocompletion: true,
+              enableSnippets: true,
+            }}
+            theme="twilight"
+            value={editorValue}
+          />
+          <div className="d-flex align-items-center mt-3">
+            <SaveFileButton
+              className="ms-auto"
+              newContent={editorValue}
+              file={file}
             />
+          </div>
         </Col>
       </Row>
     </Container>
