@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
-import {useEffect, useMemo} from 'react'
+import {useEffect, useMemo, useState} from 'react'
 import DisplayTitle from '../../../../common/components/DisplayTitle'
 import CodeApp from '../../../../modules/bots/components/code/CodeApp'
 import DeleteFileButton from '../../../../modules/bots/components/code/ui/DeleteFileButton'
@@ -26,6 +26,7 @@ export default function Bot() {
       {},
     [files],
   )
+  const [editorValue, setEditorValue] = useState('')
 
   let currentFile = null
   if (files) {
@@ -41,6 +42,13 @@ export default function Bot() {
       router.replace(`/bots/${botId}/code`)
     }
   }, [botId, fileId, keyedFiles, router])
+
+  // Update editor value on file change
+  useEffect(() => {
+    if (!isLoadingFiles && currentFile) {
+      setEditorValue(currentFile.content)
+    }
+  }, [currentFile, isLoadingFiles])
 
   return bot ? (
     <>
@@ -62,17 +70,15 @@ export default function Bot() {
             className="w-100"
             mode="python"
             readOnly={!currentFile}
-            theme="twilight"
-            value={
-              currentFile
-                ? currentFile.content
-                : 'Create a file to start editing.'
-            }
             setOptions={{
               enableBasicAutocompletion: true,
               enableLiveAutocompletion: true,
               enableSnippets: true,
             }}
+            theme="twilight"
+            value={
+              !isLoadingFiles && currentFile ? editorValue : 'Loading file...'
+            }
           />
         </CodeApp>
       </section>
