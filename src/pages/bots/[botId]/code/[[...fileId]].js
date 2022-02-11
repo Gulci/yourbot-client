@@ -1,17 +1,11 @@
-import dynamic from 'next/dynamic'
-import {useRouter} from 'next/router'
-import {useEffect, useMemo, useState} from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useMemo } from 'react'
 import DisplayTitle from '../../../../common/components/DisplayTitle'
 import CodeApp from '../../../../modules/bots/components/code/CodeApp'
 import DeleteFileButton from '../../../../modules/bots/components/code/ui/DeleteFileButton'
-import {getLayout} from '../../../../modules/bots/components/layouts/BotsLayout'
+import { getLayout } from '../../../../modules/bots/components/layouts/BotsLayout'
 import useBot from '../../../../modules/bots/hooks/useBot'
 import useFiles from '../../../../modules/bots/hooks/useFiles'
-
-const CodeEditor = dynamic(
-  () => import('../../../../modules/bots/components/code/CodeEditor'),
-  {ssr: false},
-)
 
 export default function Bot() {
   const router = useRouter()
@@ -26,7 +20,6 @@ export default function Bot() {
       {},
     [files],
   )
-  const [editorValue, setEditorValue] = useState('')
 
   let currentFile = null
   if (files) {
@@ -43,13 +36,6 @@ export default function Bot() {
     }
   }, [botId, fileId, keyedFiles, router])
 
-  // Update editor value on file change
-  useEffect(() => {
-    if (!isLoadingFiles && currentFile) {
-      setEditorValue(currentFile.content)
-    }
-  }, [currentFile, isLoadingFiles])
-
   return bot ? (
     <>
       <DisplayTitle>
@@ -65,22 +51,7 @@ export default function Bot() {
         )}
       </DisplayTitle>
       <section className="py-4">
-        <CodeApp>
-          <CodeEditor
-            className="w-100"
-            mode="python"
-            readOnly={!currentFile}
-            setOptions={{
-              enableBasicAutocompletion: true,
-              enableLiveAutocompletion: true,
-              enableSnippets: true,
-            }}
-            theme="twilight"
-            value={
-              !isLoadingFiles && currentFile ? editorValue : 'Loading file...'
-            }
-          />
-        </CodeApp>
+        <CodeApp file={currentFile} loading={isLoadingFiles} />
       </section>
     </>
   ) : null
