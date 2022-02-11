@@ -39,6 +39,7 @@ export default function AddFile() {
           
           actions.resetForm()
           actions.validateForm()
+          setIsAddingFile(false)
         }}>
         {({handleSubmit, isValid}) => (
           <Form
